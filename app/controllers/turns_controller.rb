@@ -7,7 +7,11 @@ class TurnsController < ApplicationController
   end
 
   def create
-    @turn = Turn.create(user: User.first, category: Category.first, company_id: turn_params[:company_id], turn_number: turn_params[:turn_number])
+    @turn = Turn.create(
+      user_id: turn_params[:user_id],
+      category: turn_params[:category_id],
+      company_id: turn_params[:company_id],
+      turn_number: turn_params[:turn_number])
   end
 
   def update

@@ -6,11 +6,13 @@ class CompanyUsersController < ApplicationController
   end
 
   def subscribed_companies
-    @companies = User.first.company_users.map {|company_user| company_user.company}
+    @companies = User.find(company_user_params[:user_id]).company_users.map {|company_user| company_user.company}
   end
 
   def create
-    @company_user = CompanyUser.create(user: User.first, company_id: company_user_params[:company_id])
+    @company_user = CompanyUser.create(
+      user_id: company_user_params[:user_id],
+      company_id: company_user_params[:company_id])
     render json: @company_user
   end
 
